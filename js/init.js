@@ -8,6 +8,7 @@ const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 var username="";
 var password="";
+var redirigir = true;
 
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -26,7 +27,16 @@ function validate(){
   
 }
 
-btn-primary.addEventListener("click",validate());
+
+
+function login(){
+  if(redirigir){
+    location.href = "login.html";
+  }
+  redirigir=false;
+  alert(redirigir);
+
+}
 
 var getJSONData = function(url){
     var result = {};
