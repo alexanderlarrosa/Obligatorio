@@ -13,21 +13,24 @@
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/login.css" rel="stylesheet">
-  <script src="js/login.js"></script>
+  <script src="js/init.js"></script> 
+  
 </head>
 
 <body class="text-center">
   <div class="wrapper">
     <form class="form-signin">       
       <h2 class="form-signin-heading">Please login</h2>
-      <input type="text" class="form-control" id="username" placeholder="Email Address" required="" autofocus="" />
-      <input type="password" class="form-control" id="password" placeholder="Password" required=""/>      
+      <input type="text" class="form-control" id="usuario" placeholder="Email Address" required="" autofocus="" />
+      <input type="password" class="form-control" id="contraseña" placeholder="Password" required=""/>      
       <label class="checkbox">
         <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
       </label>
-      <button id="btn-primary" type="submit" onclick="validate()">Login</button>   
+ 
+      <input id="boton-login" type="button" value="login" onclick="login();"> 
     </form>
   </div>
-  
+   
+
 </body>
 </html>

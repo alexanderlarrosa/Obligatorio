@@ -6,9 +6,7 @@ const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
-var username="";
-var password="";
-var redirigir = true;
+
 
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -18,25 +16,48 @@ var hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-
-
-function validate(){
-  username = document.getElementById("username");
-  password = document.getElementById("password").value;
+function guardarUsuario(unUsuario, unaContraseña){
+  let usuario = {
+    usuario: unUsuario,
+    contraseña: unaContraseña
+  }
+  sessionStorage.setItem("usuarioGuardado", JSON.stringify(usuario));
   location.href = "index.html";
+
+}
+
+function recuperarUsuario(){
+  let usuario = JSON.parse(sessionStorage.getItem("usuarioGuardado"));
+  return usuario;
+}
+
+
+
+function existeUsuario(){
+  if(sessionStorage.length<1){ 
+    location.href = "login.html";
+  } 
+}
+
+function login(){
+
+  let unUsuario = document.getElementById("usuario").value;
+  let unaContraseña = document.getElementById("contraseña").value;
+  
+  if(unUsuario.length>0 && unaContraseña.length>0){
+    if(/^\s+|\s+$/.test(unaContraseña)) {
+      alert("Introduzca una contraseña valida") 
+    }else{
+      guardarUsuario(unUsuario,unaContraseña); 
+    }
+    
+  }else{
+    alert("Debe completar todos los campos");
+  }
   
 }
 
 
-
-function login(){
-  if(redirigir){
-    location.href = "login.html";
-  }
-  redirigir=false;
-  alert(redirigir);
-
-}
 
 var getJSONData = function(url){
     var result = {};
@@ -67,4 +88,5 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  
 });
