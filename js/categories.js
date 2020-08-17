@@ -73,7 +73,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
         currentCategoriesArray = categoriesArray;
     }
 
-    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
+    currentCategoriesArray = sortList(currentSortCriteria, currentCategoriesArray);
 
     //Muestro las categorías ordenadas
     showCategoriesList();

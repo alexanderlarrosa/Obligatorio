@@ -57,8 +57,6 @@ function login(){
   
 }
 
-
-
 var getJSONData = function(url){
     var result = {};
     showSpinner();
@@ -84,9 +82,43 @@ var getJSONData = function(url){
     });
 }
 
+//Funciones para ordenar listas
+
+function sortList(criteria, array){
+  let result = [];
+  if (criteria === ORDER_ASC_BY_NAME)
+  {
+      result = array.sort(function(a, b) {
+          if ( a.name < b.name ){ return -1; }
+          if ( a.name > b.name ){ return 1; }
+          return 0;
+      });
+  }else if (criteria === ORDER_DESC_BY_NAME){
+      result = array.sort(function(a, b) {
+          if ( a.name > b.name ){ return -1; }
+          if ( a.name < b.name ){ return 1; }
+          return 0;
+      });
+  }else if (criteria === ORDER_BY_PROD_COUNT){
+      result = array.sort(function(a, b) {
+          let aCount = parseInt(a.productCount);
+          let bCount = parseInt(b.productCount);
+
+          if ( aCount > bCount ){ return -1; }
+          if ( aCount < bCount ){ return 1; }
+          return 0;
+      });
+  }
+
+  return result;
+}
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-  
+  let usuario = recuperarUsuario().usuario;
+  document.getElementById("usuarioLogueado").innerHTML=("Bienvenido! "+usuario);
+  console.log("usuario es "+usuario);
 });
