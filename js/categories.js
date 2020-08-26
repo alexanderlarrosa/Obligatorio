@@ -73,7 +73,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
         currentCategoriesArray = categoriesArray;
     }
 
-    currentCategoriesArray = sortList(currentSortCriteria, currentCategoriesArray);
+    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
 
     //Muestro las categorías ordenadas
     showCategoriesList();
@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
+        
         //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
         //de productos por categoría.
         minCount = document.getElementById("rangeFilterCountMin").value;
@@ -122,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
         else{
             minCount = undefined;
+            
         }
 
         if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
@@ -129,6 +131,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
         else{
             maxCount = undefined;
+            
         }
 
         showCategoriesList();
