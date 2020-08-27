@@ -7,11 +7,8 @@ var minCount = undefined;
 var maxCount = undefined;
 
 function showProductsList(){
-    console.log("ENtre en la funcion showProductsList");
     let htmlContentToAppend = "";
-    console.log(currentProductArray.length);
     for(let i = 0; i < currentProductArray.length; i++){
-        console.log("entre en el for")
         let product = currentProductArray[i];
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
@@ -106,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
-        console.log("entre en el clear ");
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
 
@@ -126,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
             minCount = parseInt(minCount);
-            console.log("minCount es "+minCount);
         }
         else{
             minCount = undefined;
@@ -134,12 +129,10 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
             maxCount = parseInt(maxCount);
-            console.log("maxCount es  "+maxCount);
         }
         else{
             maxCount = undefined;
         }
-        console.log("ENtre en el range filter");
         showProductsList();
     });
     

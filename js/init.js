@@ -34,7 +34,6 @@ function recuperarUsuario(){
 
 
 function existeUsuario(){
-  console.log("Local storage es "+localStorage.length);
   if(localStorage.length<1){
     location.href = "login.html";
   } 
