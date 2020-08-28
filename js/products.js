@@ -5,6 +5,7 @@ var currentProductArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
+const searchBar = document.getElementById("searchBar");
 
 function showProductsList(){
     let htmlContentToAppend = "";
@@ -13,7 +14,7 @@ function showProductsList(){
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
                 htmlContentToAppend += `
-                <div class="list-group-item list-group-item-action">
+                <a href="product-info.html"class="list-group-item list-group-item-action">
                     <div class="row">
                         <div class="col-3">
                             <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">
@@ -29,7 +30,7 @@ function showProductsList(){
                         </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 `
 
             }
@@ -111,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showProductsList();
     });
+
+    
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
         
