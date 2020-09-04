@@ -1,4 +1,5 @@
 var product = {};
+var comentArray = [];
 
 function showImagesGallery(array){
 
@@ -17,6 +18,38 @@ function showImagesGallery(array){
 
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
+}
+
+/*
+                for(let  i=0; i<coment.score; i++){
+                    console.log("Entre en for de score");
+                    +`<span class="fa fa-star checked"></span>+`
+                }
+                */
+
+function showComents(array){    
+    let htmlContentToAppend="";
+    for(let i = 0; i < array.length; i++){
+        let coment = array[i]; 
+        let score="";
+        for(let i=1; i<=coment.score;i++){
+        score+=`<span class="fa fa-star checked"></span>`
+        }
+        for(let i=coment.score+1; i<=5; i++){
+        score+=`<span class="fa fa-star" id="starsUnchecked"></span>`
+        }          
+                htmlContentToAppend += `
+                <hr class="my-3">
+                <div >
+                <spam>`+score+`</spam>
+                <p id="nombreUsuario">`+coment.user+`</p>
+                <p>`+coment.description+`</p> 
+                <p>`+`Publicado el `+coment.dateTime+`</p>                             
+                </div>
+                `                
+                document.getElementById("comentarios").innerHTML = htmlContentToAppend;
+    }
+    
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -42,4 +75,13 @@ document.addEventListener("DOMContentLoaded", function(e){
             showImagesGallery(product.images);
         }
     });
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok"){
+            comentArray=resultObj.data;
+           
+        }
+        showComents(comentArray);
+   
+    });
 });
+

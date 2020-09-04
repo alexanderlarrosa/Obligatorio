@@ -137,9 +137,21 @@ text-decoration: inherit;
 }
 
 .checked {
-color: orange;
+color: blue;
+padding-bottom: 15px;
 }
 
 #logOut{
   font-style: oblique;
 }
+
+#nombreUsuario{
+  font-weight: bold;
+}
+
+#starsUnchecked{
+  color: lightgrey;
+}
+
+
+
