@@ -16,16 +16,20 @@ var hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
+//Guarda el usuario nuevo en el local storage
+
 function guardarUsuario(unUsuario, unaContraseña){
   let usuario = {
     usuario: unUsuario,
     contraseña: unaContraseña
   }
+  localStorage.clear();
   localStorage.setItem("usuarioGuardado", JSON.stringify(usuario));
   location.href = "index.html";
 
 }
 
+//REcupera el usuario guardado en el local storage
 function recuperarUsuario(){
   let usuario = JSON.parse(localStorage.getItem("usuarioGuardado"));
   return usuario;
@@ -35,8 +39,11 @@ function recuperarUsuario(){
 
 function existeUsuario(){
   if(localStorage.length<1){
-    location.href = "login.html";
+    
   } 
+  if(recuperarUsuario()==null){
+    location.href = "login.html";
+  }
 }
 
 function login(){

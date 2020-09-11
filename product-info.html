@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+  
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -13,6 +14,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -60,9 +62,30 @@
           <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
           </div>
         </dd>
+        <dt>Productos relacionados</dt>
+        <dd>
+          <div class="row text-center text-lg-left pt-2" id="relproductImagesGallery">
+          </div>
+        </dd>
         <dt>Comentarios</dt>
         <div id="comentarios">
         </div>
+        <form>
+          <dt>Agregr comentario</dt>
+          <textarea rows="4" cols="50" name="comment" id="commentsTextArea"></textarea>
+          <p>Puntación</p>
+          <div class="ratings">
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+            <span class="fa fa-star-o"></span>
+          </div>
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg" id="boton-publicar">Publicar</button>
+        </form>
+        
+
       </dl>
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
     </div>
