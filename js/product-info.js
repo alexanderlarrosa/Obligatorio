@@ -8,22 +8,45 @@ function showImagesGallery(array){
 
     let htmlContentToAppend = "";
     let htmlContentToAppend2 = "";
-
+    let carrouselItemHtml="";
     //Cargo imagenes del producto
 
-    for(let i = 0; i < array.images.length; i++){
+    for(let i=0; i<array.images.length;i++){
         let imageSrc = array.images[i];
-
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
+        if(i==0){
+            carrouselItemHtml+= `
+            <div class="carousel-item active">
+                <img src="` + imageSrc + `" class="d-block w-100" alt="...">
             </div>
+        `
+        }else{
+            
+        
+        carrouselItemHtml+= `
+        <div class="carousel-item">
+            <img src="` + imageSrc + `" class="d-block w-100" alt="...">
         </div>
         `
-
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        }
+        
     }
+
+    htmlContentToAppend += `
+    <div id="carouselExampleControls" class="carousel slide col-8" data-ride="carousel">
+    <div class="carousel-inner">
+    `+carrouselItemHtml+`
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+    </a>
+    </div>
+    `
+   document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
 
     //Cargo imagenes de productos relacionados
 
@@ -33,16 +56,16 @@ function showImagesGallery(array){
             let imagRelated = array.relatedProducts[j];
             if(imagRelated==i){
                 htmlContentToAppend2 += `
-                <a href="product-info.html">
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="` + product.imgSrc + `" alt="">
-                        <p>`+ product.name +`</p>
+                <div id="relatedProduct" class="card" style="width: 18rem;">
+                    <div class="card bg-light">
+                        <img class="card-img-top" src="` + product.imgSrc + `" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">` + product.name + `</h4>
+                            <a href="product-info.html" class="btn">Ver mas...</a>
                         </div>
                     </div>
-                </a>
+                </div>
                 `
-
             document.getElementById("relproductImagesGallery").innerHTML = htmlContentToAppend2;
             }
         }
@@ -94,7 +117,6 @@ function estrellas(){
                 alert("Ingrese un comentario");                
             }
             rating=i+1;
-            //nuevoComentario(i+1);
             index=i;
             
         })
@@ -138,13 +160,7 @@ function nuevoComentario(puntuacion){
     rating=0;
     comentArray.push(comentariosNuevos);
     showComents(comentArray);
-    /*
-    for(let j=0; j<stars.length; j++){
-        stars[j].classList.remove("fa-star");
-        stars[j].classList.add("fa-star-o");
-    }
-    */
-   quitarEstrellas();
+    quitarEstrellas();
     
 }
 
@@ -192,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             productNameHTML.innerHTML = product.name;
             productDescriptionHTML.innerHTML = product.description;
             productCountHTML.innerHTML = product.soldCount;
-            productCriteriaHTML.innerHTML = product.productCriteria;
+            productCriteriaHTML.innerHTML = product.category;
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product);
