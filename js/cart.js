@@ -1,29 +1,59 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+var subTotalCost=0;
+var totalProduct=0;
+var currentCartArray=[];
+var currentCantArray=[];
 
 
-function showCartList(currentCartArray){
+
+function subTotal(){
+  let cantProduct=document.getElementById("idCantCart");
+  for(let i=0; i<currentCartArray.length; i++){
+    
+  }
+}
+
+function updateCart(){
+  
+  var cantidad = document.getElementsByClassName("cartClass");
+  for(let i=0; i<currentCartArray.length; i++){
+    let product=currentCartArray[i];
+    product.count=cantidad[i].value;
+  }
+  showCartList();
+
+  
+}
+
+
+
+function showCartList(){
+
     console.log("Entro en show cart");
     console.log("CurrentCartArray es "+currentCartArray.length);
     let htmlContentToAppend = "";
     let htmlContentToAppend2 = "";
+    let total=0;
     for(let i = 0; i < currentCartArray.length; i++){
         let product = currentCartArray[i];
-        let productCost=product.unitCost;
-        if(productCost=="USD"){
-            productCost=productCost*40;
+        let subTotal= product.unitCost*product.count;
+        if(product.currency=="USD"){
+          total=total+subTotal*40;
+        }else{
+          total=total+subTotal;
         }
         htmlContentToAppend2 += `
-    
         <tr>
-        <td>` + product.src + `</td>
-        <td>` + product.name + `</td>
-        <td>` + product.currency + " " + productCost + `</td>
-        <td><input name="cantidad" id="cantCart" type="text" value=` + product.count + ` style="width:30px"></td>
-        <td>` + product.count*product.unitCost + `</td>
+        <td><img src="${product.src}" width="100px"</td>
+        <td>${product.name}</td>
+        <td>${product.currency} ${product.unitCost}</td>
+        <td><input name="cantidad" class="cartClass" type="number" value= "${product.count}" style="width:60px" min="1" max="99" ></td>
+        <td>${product.currency} ${subTotal}</p></td>
         </tr>
               ` 
+        
         
     }
     htmlContentToAppend += `
@@ -40,6 +70,15 @@ function showCartList(currentCartArray){
     <tbody>
     ` + htmlContentToAppend2 + `
     </tbody>
+    <tfoot>
+    <tr>
+      <td>Total</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>UYU ${total}</td>
+    </tr>
+  </tfoot>
   </table>
               `       
               document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;
@@ -58,12 +97,23 @@ function showCartList(currentCartArray){
     }
 }
 
+document.addEventListener("input", function(event){
+  updateCart();
+  /*
+  if (event.target.className == "cardClass"){
+      
+      updateCart();
+  }
+  */
+}, false);
 
 
 document.addEventListener("DOMContentLoaded", function(e){
+  
     getJSONData(CART_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
-            showCartList(resultObj.data.articles);
+          currentCartArray=resultObj.data.articles;
+            showCartList();
         }
-    });
+    });   
 });
