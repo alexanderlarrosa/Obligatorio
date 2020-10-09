@@ -3,58 +3,54 @@
 //elementos HTML presentes.
 var subTotalCost=0;
 var totalProduct=0;
+let total=0;
 var currentCartArray=[];
 var currentCantArray=[];
 
 
-
-function subTotal(){
-  let cantProduct=document.getElementById("idCantCart");
-  for(let i=0; i<currentCartArray.length; i++){
-    
-  }
-}
-
 function updateCart(){
-  
+  subTotal=document.getElementsByClassName("subTotal");
   var cantidad = document.getElementsByClassName("cartClass");
+  total=0;
   for(let i=0; i<currentCartArray.length; i++){
     let product=currentCartArray[i];
     product.count=cantidad[i].value;
+    let subTotal= product.unitCost*product.count;
+    document.getElementsByClassName("subTotal")[i].innerHTML=product.currency+" "+subTotal;
+    calcTotal(product, subTotal);
+    document.getElementById("total").innerHTML="UYU "+total;
   }
+  /*
   showCartList();
+  */
 
-  
 }
 
 
+function calcTotal(product,subTotal){
+  if(product.currency=="USD"){
+    total=total+subTotal*40;
+  }else{
+    total=total+subTotal;
+  }
+}
 
 function showCartList(){
 
-    console.log("Entro en show cart");
-    console.log("CurrentCartArray es "+currentCartArray.length);
     let htmlContentToAppend = "";
     let htmlContentToAppend2 = "";
-    let total=0;
     for(let i = 0; i < currentCartArray.length; i++){
         let product = currentCartArray[i];
         let subTotal= product.unitCost*product.count;
-        if(product.currency=="USD"){
-          total=total+subTotal*40;
-        }else{
-          total=total+subTotal;
-        }
+        calcTotal(product,subTotal);
         htmlContentToAppend2 += `
         <tr>
         <td><img src="${product.src}" width="100px"</td>
         <td>${product.name}</td>
         <td>${product.currency} ${product.unitCost}</td>
-        <td><input name="cantidad" class="cartClass" type="number" value= "${product.count}" style="width:60px" min="1" max="99" ></td>
-        <td>${product.currency} ${subTotal}</p></td>
-        </tr>
-              ` 
-        
-        
+        <td><input type="number" value="${product.count}" class="cartClass" min="0" max="1000" step="1"/></td>
+        <td><p class="subTotal" >${product.currency} ${subTotal}</p></td>
+        </tr>`  
     }
     htmlContentToAppend += `
     <table class="table">
@@ -76,25 +72,12 @@ function showCartList(){
       <td></td>
       <td></td>
       <td></td>
-      <td>UYU ${total}</td>
+      <td><p id="total">UYU ${total}</p></td>
     </tr>
   </tfoot>
-  </table>
-              `       
-              document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;
-    for(let i = 0; i < currentCartArray.length; i++){
-        let product = currentCartArray[i];
-        htmlContentToAppend += `
-    
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-              ` 
-        
-    }
+  </table>`       
+  document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;
+
 }
 
 document.addEventListener("input", function(event){

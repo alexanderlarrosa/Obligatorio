@@ -99,5 +99,7 @@ var getJSONData = function(url){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
   let usuario = recuperarUsuario().usuario;
+  
   document.getElementById("dropdownMenuButton").innerHTML=("Bienvenido! "+usuario);
+  
 });
