@@ -11,25 +11,13 @@
   <link href="css/style.css" rel="stylesheet">
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
+  
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
+
+
 </head>
 
 <nav class="site-header sticky-top py-1 bg-dark">
@@ -54,11 +42,207 @@
   <div class="text-center p-4">
       <h2>Carrito de compras</h2>
   </div>
-  <div class="container">
+  <div class="container mt-5">
       <div class="text-center p-4">
         <div class="list-group" id="cart-list-container"></div>
-      </div>    
+      </div> 
+
+
+      <form style="padding-left: 50px;" class="needs-validation" novalidate>
+        
+      </form>
+
+
+      <form style="padding-left: 30px;" class="needs-validation" novalidate>  
+        <hr class="mb-4">
+        <h4 class="mb-3">Dirección</h4>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom01">Calle</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="Ingrese una calle..." value=""
+              required>
+            <div class="invalid-feedback">
+              Por favor, ingrese una calle.
+            </div>
+            <div class="valid-feedback">
+              Correcto
+            </div>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="validationCustom02">Numero de puerta</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="00000" value=""
+              required>
+              <div class="invalid-feedback">
+                Por favor, ingrese su número de puerta.
+              </div>
+              <div class="valid-feedback">
+                Correcto
+              </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom03">Ciudad</label>
+            <input type="text" class="form-control" id="validationCustom03" placeholder="Ingrese una ciudad..." required>
+            <div class="invalid-feedback">
+              Por favor, ingrese una ciudad.
+            </div>
+            <div class="valid-feedback">
+              Correcto
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9 mb-3">
+            <label for="state">Departamento</label>
+            <select class="custom-select browser-default" required>
+              <option value="">Seleccione un departamento</option>
+              <option value="1">Artigas</option> 
+              <option value="2">Canelones</option> 
+              <option value="3">Cerro Largo</option>
+              <option value="4">Colonia</option> 
+              <option value="5">Durazno</option> 
+              <option value="6">Flores</option> 
+              <option value="7">Florida</option> 
+              <option value="8">Lavalleja</option> 
+              <option value="9">Maldonado</option> 
+              <option value="10">Montevideo</option> 
+              <option value="11">Paysandu</option> 
+              <option value="12">Rio Negro</option> 
+              <option value="13">Rivera</option> 
+              <option value="14">Rocha</option> 
+              <option value="15">Salto</option> 
+              <option value="16">San José</option> 
+              <option value="17">Soriano</option> 
+              <option value="18">Tacuarembó</option> 
+              <option value="19">Treinta y tres</option>
+            </select>
+            <div class="invalid-feedback">
+              Por favor, seleccione un departemento.
+            </div>
+            <div class="valid-feedback">
+              Correcto
+            </div>
+          </div>
+        </div>
+        </div>
+        <hr class="mb-4">
+        <h4 class="mb-3">Tipo de envío</h4>
+        <div class="d-block my-3">
+          <div class="custom-control custom-radio">
+            <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
+            <label class="custom-control-label" for="premiumradio">Premium 2 a 5 días (15%)</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required="">
+            <label class="custom-control-label" for="expressradio">Express 5 a 8 días (7%)</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+            <label class="custom-control-label" for="standardradio">Standard 12 a 15 días (5%)</label>
+          </div>
+          
+        </div>
+        <hr class="mb-4">
+        <h4 class="mb-3">Costos</h4>
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Subtotal</h6>
+                <small class="text-muted">Costo todal de los productos</small>
+              </div>
+              <span class="text-muted" id="productCostText">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Costo de envío</h6>
+                <small class="text-muted">Según envío seleccionado</small>
+              </div>
+              <span class="text-muted" id="comissionText">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total ($)</span>
+              <strong id="totalCostText">-</strong>
+            </li>
+          </ul>
+        <hr class="mb-4">
+        <h4 class="mb-3">Forma de pago</h4>
+        <h5 class="mb-2" id="title-pay-method">No ha seleccionado  una forma de pago</h5>
+        <div class="row">
+          <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Seleccionar</button>
+        </div>
+        <hr class="mb-4">
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Acepto los terminos y condiciones
+            </label>
+            <div class="invalid-feedback">
+              Debe aceptar los terminos y condiciones para su envío.
+            </div>
+            <div class="valid-feedback">
+              Al hacer click, usted acepta los terminos y condiciones.
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" type="submit" id="submit-button">Confirmar compra</button>
+      </form>  
+      <hr class="my-3">
   </div>
+
+
+  <!-- MODAL -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Metodos de pago</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
+            <div class="tabs mt-3">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation"> <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true"> <img src="https://i.imgur.com/sB4jftM.png" width="80"> </a> </li>
+                    <li class="nav-item" role="presentation"> <a class="nav-link" id="paypal-tab" data-toggle="tab" href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"> <img src="https://i.imgur.com/yK7EDD1.png" width="80"> </a> </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                        <div class="mt-4 mx-4">
+                            <div class="text-center">
+                                <h5>Tarjeta de crédito</h5>
+                            </div>
+                            <div class="form mt-3" id="card-div">
+                                <label for="state">Nombre</label>
+                                <div class="inputbox"> <input type="text" name="name" class="form-control" required="required" id="input-card-name"></div>
+                                <label for="state">Número de la tarjeta</label>
+                                <div class="inputbox"> <input type="text" name="name" min="1" max="999" class="form-control" required="required" id="input-card-number"> </div>
+                                <div class="d-flex flex-row">
+                                    <div class="inputbox"> <span>Fecha de expiración</span> <input type="text" name="name" min="1" max="999" class="form-control" required="required" id="input-card-date"> </div>
+                                    <div class="inputbox"><span>CVV</span> <input type="text" name="name" min="1" max="999" class="form-control" required="required" id="input-card-cvv">  </div>
+                                </div>
+                                <div class="pay px-5"> <button class="btn btn-primary btn-block" id="confirm-btn-card">Confirmar pago</button></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab">
+                        <div class="px-5 mt-5">
+                            <div class="inputbox">  <span>Paypal Email</span> <input type="text" name="name" class="form-control" required="required" id="input-paypal"></div>
+                            <div class="pay px-5"> <button id="confirm-btn-paypal" class="btn btn-primary btn-block" data-dismiss="modal">Confirmar pago</button> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 <div id="spinner-wrapper"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
 <script src="js/jquery-3.4.1.min.js"></script>
