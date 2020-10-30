@@ -7,6 +7,7 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/pro
 const CART_INFO_URL2 = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+let unUsuario="";
 
 
 var showSpinner = function(){
@@ -19,11 +20,18 @@ var hideSpinner = function(){
 
 //Guarda el usuario nuevo en el local storage
 
-function guardarUsuario(unUsuario, unaContraseña){
+function guardarUsuario(unUsuario, unaContraseña, unPrimerNombre, unSegundoNombre, unPrimerApellido, unSegundoApellido, unMail, unTelefono){
   let usuario = {
     usuario: unUsuario,
-    contraseña: unaContraseña
+    contraseña: unaContraseña,
+    primerNombre: unPrimerNombre,
+    segundoNombre: unSegundoNombre,
+    primerApellido: unPrimerApellido,
+    segundoApellido: unSegundoApellido,
+    email: unMail,
+    telefono: unTelefono
   }
+  unUsuario=usuario;
   localStorage.clear();
   localStorage.setItem("usuarioGuardado", JSON.stringify(usuario));
   location.href = "index.html";
@@ -54,9 +62,9 @@ function login(){
   
   if(unUsuario.length>0 && unaContraseña.length>0){
     if(/^\s+|\s+$/.test(unaContraseña)) {
-      alert("Introduzca una contraseña valida") 
+      alert("Introduzca una contraseña valida"); 
     }else{
-      guardarUsuario(unUsuario,unaContraseña); 
+      guardarUsuario(unUsuario,unaContraseña, "","","","","","");
     }
     
   }else{
@@ -98,8 +106,7 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-  let usuario = recuperarUsuario().usuario;
-  
-  document.getElementById("dropdownMenuButton").innerHTML=("Bienvenido! "+usuario);
+  let usuario = recuperarUsuario();
+  document.getElementById("dropdownMenuButton").innerHTML=("Bienvenido! "+usuario.usuario);
   
 });

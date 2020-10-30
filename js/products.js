@@ -14,28 +14,23 @@ function showProductsList(){
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
                 htmlContentToAppend += `
-                <a href="product-info.html"class="list-group-item list-group-item-action">
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">
-                        </div>
-                        <div class="col">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h4 class="mb-1">`+ product.name +`</h4>
-                                <small class="text-muted">` + product.soldCount + ` artículos</small>
-                            </div>
-                        <div>
-                        <p>`+product.description +`</p>
-                        <p>`+product.currency+` `+product.cost+`</p>
-                        </div>
-                        </div>
+                <div class="col-sm-12 col-md-6 col-xl-4">    
+                <a href="product-info.html"class="list-group-item-action">
+                  <div class="card mb-4 box-shadow">
+                    <img src="${product.imgSrc}" alt="${product.desc}" class="img-thumbnail">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <h4>${product.name}</h2>
+                        <small class="text-muted">${product.soldCount}</small>
+                      </div>
+                      <p class="card-text">${product.description}</p>
+                      <p class="card-text">`+product.currency+` `+product.cost+`</p>
                     </div>
-                </a>
+                  </div>
+                </a> 
+              </div>  
                 `
-
             }
-        
-        
         document.getElementById("product-list-container").innerHTML = htmlContentToAppend;
     }
 }

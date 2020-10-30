@@ -53,12 +53,75 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div class="text-center p-4">
+      <h2>Mi perfil</h2>
     </div>
+    <form style="padding-left: 30px;" class="needs-validation" novalidate>  
+      <h4 class="mb-3">Datos personales</h4>
+      <hr class="mb-4">
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom01">Primer Nombre</label>
+          <input type="text" class="form-control" id="primer-nombre" placeholder="Ingrese su nombre..." value=""
+            required>
+          <div class="invalid-feedback">
+            Por favor, ingrese su nombre.
+          </div>
+          <div class="valid-feedback">
+            Correcto
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom01">Segundo nombre</label>
+          <input type="text" class="form-control" id="segundo-nombre" placeholder="Ingrese su segundo nombre..." value="">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom01">Primer Apellido</label>
+          <input type="text" class="form-control" id="primer-apellido" placeholder="Ingrese su apellido..." value=""
+            required>
+          <div class="invalid-feedback">
+            Por favor, ingrese su apellido.
+          </div>
+          <div class="valid-feedback">
+            Correcto
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom01">Segundo apellido</label>
+          <input type="text" class="form-control" id="segundo-apellido" placeholder="Ingrese su segundo apellido..." value="">
+        </div>
+      </div>
+      <h4 class="mb-3">Información de contacto</h4>
+      <hr class="mb-4">
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom01">E-mail</label>
+          <input type="text" class="form-control" id="email" placeholder="Ingrese su mail..." value=""
+            required>
+          <div class="invalid-feedback">
+            Por favor, ingrese mail.
+          </div>
+          <div class="valid-feedback">
+            Correcto
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom01">Telefono</label>
+          <input type="text" class="form-control" id="telefono" placeholder="Ingrese su telefono..." value=""
+            required>
+          <div class="invalid-feedback">
+            Por favor, ingrese su telefono.
+          </div>
+          <div class="valid-feedback">
+            Correcto
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <button class="btn btn-primary btn-sm" type="submit" id="boton-guardar-usuario">Guardar Datos</button>
+    </form>
   </div>
   <footer class="text-muted bg-light">
     <div class="container">
