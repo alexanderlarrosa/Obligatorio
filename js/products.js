@@ -7,6 +7,7 @@ var minCount = undefined;
 var maxCount = undefined;
 const searchBar = document.getElementById("searchBar");
 
+//Recorre el listado y muestra los productos
 function showProductsList(){
     let htmlContentToAppend = "";
     for(let i = 0; i < currentProductArray.length; i++){
@@ -21,20 +22,21 @@ function showProductsList(){
                     <div class="card-body">
                       <div class="d-flex justify-content-between align-items-center">
                         <h4>${product.name}</h2>
-                        <small class="text-muted">${product.soldCount}</small>
+                        <small class="text-muted">${product.soldCount+" unidades"}</small>
                       </div>
                       <p class="card-text">${product.description}</p>
                       <p class="card-text">`+product.currency+` `+product.cost+`</p>
                     </div>
                   </div>
                 </a> 
-              </div>  
+            </div>  
                 `
             }
         document.getElementById("product-list-container").innerHTML = htmlContentToAppend;
     }
 }
 
+//Ordena los productos
 function sortProduct(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_PRICE)
@@ -61,6 +63,7 @@ function sortProduct(criteria, array){
     return result;
   }
 
+  //LLama a las funciones ordenar y mostrar productos
 function sortAndShowProducts(sortCriteria, productsArray){
     currentSortCriteria = sortCriteria;
 
@@ -74,11 +77,9 @@ function sortAndShowProducts(sortCriteria, productsArray){
     showProductsList();
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
     showSpinner();
+    //Carga datos JSON desde url
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             sortAndShowProducts(ORDER_ASC_BY_PRICE, resultObj.data);
@@ -107,8 +108,6 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showProductsList();
     });
-
-    
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
         

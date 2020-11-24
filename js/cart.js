@@ -1,6 +1,3 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 var subTotalCost=0;
 var totalProduct=0;
 var porcentajeComison=0.15;
@@ -10,6 +7,7 @@ var currentCartArray=[];
 var currentCantArray=[];
 var verificarModal=false;
 
+//Verifica metodo de pago y cantidad de productos en el carrito
 function verificar(){
   var validado=true;
   if(verificarModal==false){
@@ -24,6 +22,7 @@ function verificar(){
   return validado;
 }
 
+//Verifica si se han completado los datos de metodo de pago paypal
 function verificarPayPal(){
   if(document.getElementById("input-paypal").value==""){
     alert("Debe completar todos los datos");
@@ -35,6 +34,7 @@ function verificarPayPal(){
   
 }
 
+//Verifica que se han completado los datos de metodo de pago por tarjeta
 function verificarTarjeta(){
     if(document.getElementById("input-card-name").value=="" || document.getElementById("input-card-number").value=="" || document.getElementById("input-card-date").value=="" || document.getElementById("input-card-cvv").value==""){
       alert("Debe completar todos los datos");
@@ -45,7 +45,7 @@ function verificarTarjeta(){
     }
 }
 
-
+//Elimina un producto del carrito
 function deleteProduct(posicion){
   currentCartArray.splice(posicion,1);
   if(currentCantArray.length<1){
@@ -56,6 +56,7 @@ function deleteProduct(posicion){
   
 }
 
+//Actualiza los valores luego de modificar el carrito
 function updateCart(){
   subTotal=document.getElementsByClassName("subTotal");
   var cantidad = document.getElementsByClassName("cartClass");
@@ -68,12 +69,9 @@ function updateCart(){
     calcTotal(product, subTotal);
     document.getElementById("total").innerHTML="UYU "+total;
   }
-  /*
-  showCartList();
-  */
-
 }
 
+//Calcula el costo del envio
 function calcEnvio(){
   let costoEnvio=(Math.round(total * porcentajeComison * 100) / 100);
   totalConEnvio=total+costoEnvio;
@@ -81,10 +79,12 @@ function calcEnvio(){
   document.getElementById("totalCostText").innerHTML="$ "+totalConEnvio;
 }
 
+//Calcula el subtotal
 function calcSubtotal(product){
   return product.unitCost*product.count;
   }
 
+//Calcula el total
 function calcTotal(product,subTotal){
   if(product!=null){
     if(product.currency=="USD"){
@@ -101,8 +101,8 @@ function calcTotal(product,subTotal){
 
 }
 
+//Recorre la lista de productos en el carrito y la muestra
 function showCartList(){
-
     let htmlContentToAppend = "";
     let htmlContentToAppend2 = "";
     for(let i = 0; i < currentCartArray.length; i++){
@@ -149,14 +149,10 @@ function showCartList(){
 
 }
 
+
+//Eventos 
 document.addEventListener("input", function(event){
   updateCart();
-  /*
-  if (event.target.className == "cardClass"){
-      
-      updateCart();
-  }
-  */
 }, false);
 
 document.getElementById("premiumradio").addEventListener("change", function(){
@@ -176,17 +172,6 @@ document.getElementById("standardradio").addEventListener("change", function(){
   calcEnvio();
 });
 
-/*
-document.getElementById("paypal-button").addEventListener("click", function() {
-  document.getElementById("contidionsModal").style.display="none";
-});
-*/
-
-/*document.getElementById("confirm-button").addEventListener("click", function(){
-  
-})
-
-*/
 document.getElementById("submit-button").addEventListener("submit",function(){
   verificar();
 })
@@ -198,8 +183,6 @@ document.getElementById("confirm-btn-card").addEventListener("click",function(){
 document.getElementById("confirm-btn-paypal").addEventListener("click",function(){
   verificarPayPal();
 })
-
-
 
 document.addEventListener("DOMContentLoaded", function(e){
   

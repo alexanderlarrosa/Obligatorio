@@ -19,7 +19,6 @@ var hideSpinner = function(){
 }
 
 //Guarda el usuario nuevo en el local storage
-
 function guardarUsuario(unUsuario, unaContraseña, unPrimerNombre, unSegundoNombre, unPrimerApellido, unSegundoApellido, unMail, unTelefono){
   let usuario = {
     usuario: unUsuario,
@@ -38,23 +37,21 @@ function guardarUsuario(unUsuario, unaContraseña, unPrimerNombre, unSegundoNomb
 
 }
 
-//REcupera el usuario guardado en el local storage
+//Recupera el usuario guardado en el local storage
 function recuperarUsuario(){
   let usuario = JSON.parse(localStorage.getItem("usuarioGuardado"));
   return usuario;
 }
 
 
-
-function existeUsuario(){
-  if(localStorage.length<1){
-    
-  } 
+//Verifica si existe algun usuario guardado en el local storage
+function existeUsuario(){ 
   if(recuperarUsuario()==null){
     location.href = "login.html";
   }
 }
 
+//Verifica los datos ingresados y llama a la funcion guardar
 function login(){
 
   let unUsuario = document.getElementById("usuario").value;
@@ -73,6 +70,7 @@ function login(){
   
 }
 
+//Carga datos JSON desde url
 var getJSONData = function(url){
     var result = {};
     showSpinner();
@@ -99,12 +97,6 @@ var getJSONData = function(url){
 }
 
 
-
-
-
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
   let usuario = recuperarUsuario();
   document.getElementById("dropdownMenuButton").innerHTML=("Bienvenido! "+usuario.usuario);

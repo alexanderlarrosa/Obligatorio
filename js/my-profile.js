@@ -1,7 +1,5 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 
+//Guarda datos de usuario
 function guardarDatosUsuario(){
     let primerNombre = document.getElementById("primer-nombre").value;
     let segundoNombre = document.getElementById("segundo-nombre").value;
@@ -14,6 +12,7 @@ function guardarDatosUsuario(){
     mostrarDatos();
 }
 
+//Muestra los datos de usuario guardado
 function mostrarDatos(){
     let unUsuario = recuperarUsuario();
     document.getElementById("primer-nombre").value=unUsuario.primerNombre;
